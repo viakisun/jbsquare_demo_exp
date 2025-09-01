@@ -1709,17 +1709,6 @@ const JBSquareF2: React.FC = () => {
       </main>
 
       <Footer />
-      
-      {/* Reduced motion styles */}
-      <style jsx>{`
-        @media (prefers-reduced-motion: reduce) {
-          * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };
