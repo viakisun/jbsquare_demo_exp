@@ -44,13 +44,13 @@ const Card: React.FC<CardProps> = ({ title, shortDesc, longDesc, link }) => {
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="max-w-6xl w-full">
+      <div className="max-w-7xl w-full">
         <header className="text-center mb-12">
           <h1 className="text-5xl font-extrabold text-gray-900 mb-2">JB SQUARE Demo</h1>
           <p className="text-lg text-gray-500">Check out the page concepts.</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <Card
             title="Innovative Concept (Korean)"
             shortDesc="A futuristic design concept using dynamic UI and brilliant animations."
@@ -64,10 +64,16 @@ const LandingPage = () => {
             link="/jb-square-f2-desktop"
           />
           <Card
-            title="Australian Concept"
+            title="Australian Concept (Futuristic)"
             shortDesc="A sophisticated, global-standard design sample for an Australian client."
             longDesc="This is a one-page website redesign sample for an Australian client, adhering to global standards. It features a modern, dark-themed design for a biotech innovation hub."
             link="/jb-square-aus"
+          />
+          <Card
+            title="Australian Concept (Editorial)"
+            shortDesc="A world-class UX/UI redesign with a focus on clarity and credibility."
+            longDesc="This is a complete, expert-led redesign of the editorial concept page for an Australian audience. It features a light theme, strong typography, and a professional, clean layout."
+            link="/jb-square-au-editorial"
           />
         </div>
       </div>
