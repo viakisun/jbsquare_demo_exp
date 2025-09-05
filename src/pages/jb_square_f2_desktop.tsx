@@ -1,6 +1,6 @@
 // JB SQUARE Variant F2 — Single-file renderable (Desktop-1920, Dynamic & Refined)
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, ReactNode } from 'react';
 
 // Types
 interface Program {
@@ -63,457 +63,457 @@ interface Patent {
   description: string;
 }
 
-// Embedded Data (Enhanced)
+// Embedded Data (Enhanced & Translated)
 const PROGRAMS: Program[] = [
   {
     id: '1',
-    title: '바이오 스타트업 육성 프로그램',
+    title: 'Bio Startup Incubation Program',
     deadline: '2025-10-15',
-    host: '전북테크노파크',
+    host: 'Jeonbuk Technopark',
     status: 'active',
-    budget: '50억원',
-    category: '창업지원',
+    budget: '$5M',
+    category: 'Startup Support',
     popularity: 95,
     daysLeft: 44,
     fileUrl: '#',
-    description: '초기 바이오 스타트업의 성장을 위한 종합 지원 프로그램입니다.'
+    description: 'A comprehensive support program for the growth of early-stage bio startups.'
   },
   {
     id: '2',
-    title: '바이오 기술사업화 지원사업',
+    title: 'Bio-technology Commercialization Support',
     deadline: '2025-11-30',
-    host: '전북바이오융합산업진흥원',
+    host: 'Jeonbuk BIO-Convergence Industry Promotion Agency',
     status: 'active',
-    budget: '30억원',
-    category: '사업화',
+    budget: '$3M',
+    category: 'Commercialization',
     popularity: 87,
     daysLeft: 90,
     fileUrl: '#',
-    description: '연구 성과의 상용화를 위한 전문적인 지원을 제공합니다.'
+    description: 'Provides professional support for the commercialization of research results.'
   },
   {
     id: '3',
-    title: 'K-바이오 랩허브 구축사업',
+    title: 'K-Bio Lab Hub Construction Project',
     deadline: '2025-12-20',
-    host: '과학기술정보통신부',
+    host: 'Ministry of Science and ICT',
     status: 'upcoming',
-    budget: '100억원',
-    category: '인프라',
+    budget: '$10M',
+    category: 'Infrastructure',
     popularity: 92,
     daysLeft: 110,
     fileUrl: '#',
-    description: '글로벌 수준의 바이오 연구 인프라를 구축합니다.'
+    description: 'Building a global-level bio research infrastructure.'
   },
   {
     id: '4',
-    title: '바이오헬스 글로벌 진출 지원',
+    title: 'Bio-Health Global Expansion Support',
     deadline: '2025-09-30',
-    host: '산업통상자원부',
+    host: 'Ministry of Trade, Industry and Energy',
     status: 'active',
-    budget: '25억원',
-    category: '해외진출',
+    budget: '$2.5M',
+    category: 'Global Expansion',
     popularity: 78,
     daysLeft: 29,
     fileUrl: '#',
-    description: '바이오헬스 기업의 해외 시장 진출을 돕습니다.'
+    description: 'Assists bio-health companies in entering overseas markets.'
   },
   {
     id: '5',
-    title: '중소기업 바이오 R&D 지원',
+    title: 'SME Bio R&D Support',
     deadline: '2025-10-31',
-    host: '중소벤처기업부',
+    host: 'Ministry of SMEs and Startups',
     status: 'active',
-    budget: '40억원',
-    category: '연구개발',
+    budget: '$4M',
+    category: 'R&D',
     popularity: 83,
     daysLeft: 60,
     fileUrl: '#',
-    description: '중소 바이오기업의 연구개발 활동을 지원합니다.'
+    description: 'Supports research and development activities of small and medium-sized bio-enterprises.'
   },
   {
     id: '6',
-    title: '바이오 융합 신기술 개발',
+    title: 'Bio-Convergence New Technology Development',
     deadline: '2025-11-15',
-    host: '전북대학교',
+    host: 'Jeonbuk National University',
     status: 'active',
-    budget: '20억원',
-    category: '연구개발',
+    budget: '$2M',
+    category: 'R&D',
     popularity: 71,
     daysLeft: 75,
     fileUrl: '#',
-    description: '혁신적인 바이오 융합 기술 개발을 지원합니다.'
+    description: 'Supports the development of innovative bio-convergence technologies.'
   },
   {
     id: '7',
-    title: '바이오 클러스터 입주 지원',
+    title: 'Bio Cluster Residency Support',
     deadline: '2025-09-15',
-    host: '전북테크노파크',
+    host: 'Jeonbuk Technopark',
     status: 'active',
-    budget: '15억원',
-    category: '창업지원',
+    budget: '$1.5M',
+    category: 'Startup Support',
     popularity: 89,
     daysLeft: 14,
     fileUrl: '#',
-    description: '바이오 클러스터 입주 기업을 위한 특별 지원 프로그램입니다.'
+    description: 'A special support program for companies residing in the bio cluster.'
   },
   {
     id: '8',
-    title: '바이오 인력양성 사업',
+    title: 'Bio Manpower Training Program',
     deadline: '2025-12-31',
-    host: '전북바이오융합산업진흥원',
+    host: 'Jeonbuk BIO-Convergence Industry Promotion Agency',
     status: 'upcoming',
-    budget: '35억원',
-    category: '인재양성',
+    budget: '$3.5M',
+    category: 'Talent Nurturing',
     popularity: 65,
     daysLeft: 121,
     fileUrl: '#',
-    description: '전문 바이오 인력 양성을 위한 교육 프로그램입니다.'
+    description: 'An educational program for nurturing professional bio manpower.'
   },
   {
     id: '9',
-    title: '바이오 벤처 투자연계 지원',
+    title: 'Bio Venture Investment Linkage Support',
     deadline: '2025-10-20',
-    host: '전북창조경제혁신센터',
+    host: 'Jeonbuk Center for Creative Economy & Innovation',
     status: 'active',
-    budget: '45억원',
-    category: '투자연계',
+    budget: '$4.5M',
+    category: 'Investment Linkage',
     popularity: 91,
     daysLeft: 49,
     fileUrl: '#',
-    description: '바이오 벤처기업과 투자자 간의 연결을 지원합니다.'
+    description: 'Supports connections between bio venture companies and investors.'
   },
   {
     id: '10',
-    title: '바이오 규제샌드박스 지원',
+    title: 'Bio Regulatory Sandbox Support',
     deadline: '2025-11-10',
-    host: '식품의약품안전처',
+    host: 'Ministry of Food and Drug Safety',
     status: 'active',
-    budget: '18억원',
-    category: '규제혁신',
+    budget: '$1.8M',
+    category: 'Regulatory Innovation',
     popularity: 76,
     daysLeft: 70,
     fileUrl: '#',
-    description: '혁신적인 바이오 제품의 규제 특례를 지원합니다.'
+    description: 'Supports regulatory exceptions for innovative bio products.'
   }
 ];
 
 const CENTERS: Center[] = [
   {
     id: '1',
-    name: '전북바이오벤처센터',
-    location: '전주시 덕진구',
+    name: 'Jeonbuk Bio Venture Center',
+    location: 'Deokjin-gu, Jeonju-si',
     occupancy: 28,
     capacity: 32,
     contact: '063-219-3200',
     established: 2018,
-    specialization: '바이오의약품',
-    region: '전주'
+    specialization: 'Biopharmaceuticals',
+    region: 'Jeonju'
   },
   {
     id: '2',
-    name: '익산바이오사이언스센터',
-    location: '익산시 신동',
+    name: 'Iksan Bio-Science Center',
+    location: 'Sin-dong, Iksan-si',
     occupancy: 15,
     capacity: 20,
     contact: '063-859-6100',
     established: 2020,
-    specialization: '진단시약',
-    region: '익산'
+    specialization: 'Diagnostic Reagents',
+    region: 'Iksan'
   },
   {
     id: '3',
-    name: '군산바이오메디센터',
-    location: '군산시 소룡동',
+    name: 'Gunsan Bio-Medi Center',
+    location: 'Soryong-dong, Gunsan-si',
     occupancy: 22,
     capacity: 25,
     contact: '063-454-8700',
     established: 2019,
-    specialization: '의료기기',
-    region: '군산'
+    specialization: 'Medical Devices',
+    region: 'Gunsan'
   },
   {
     id: '4',
-    name: '정읍바이오소재센터',
-    location: '정읍시 산내면',
+    name: 'Jeongeup Bio-Material Center',
+    location: 'Sannae-myeon, Jeongeup-si',
     occupancy: 18,
     capacity: 24,
     contact: '063-537-4200',
     established: 2021,
-    specialization: '바이오소재',
-    region: '정읍'
+    specialization: 'Biomaterials',
+    region: 'Jeongeup'
   },
   {
     id: '5',
-    name: '김제바이오푸드센터',
-    location: '김제시 금구면',
+    name: 'Gimje Bio-Food Center',
+    location: 'Geumgu-myeon, Gimje-si',
     occupancy: 12,
     capacity: 18,
     contact: '063-547-3100',
     established: 2022,
-    specialization: '바이오식품',
-    region: '김제'
+    specialization: 'Bio-Food',
+    region: 'Gimje'
   },
   {
     id: '6',
-    name: '완주바이오랩센터',
-    location: '완주군 이서면',
+    name: 'Wanju Bio-Lab Center',
+    location: 'Iseo-myeon, Wanju-gun',
     occupancy: 20,
     capacity: 26,
     contact: '063-291-7400',
     established: 2020,
-    specialization: '바이오화학',
-    region: '완주'
+    specialization: 'Bio-Chemicals',
+    region: 'Wanju'
   }
 ];
 
 const NEWS: News[] = [
-  {
+    {
     id: '1',
-    title: '전북 바이오 클러스터, 글로벌 바이오 허브로의 도약을 위한 새로운 전환점',
+    title: 'Jeonbuk Bio Cluster: A New Turning Point for a Leap into a Global Bio Hub',
     date: '2025-08-28',
-    category: '정책',
+    category: 'Policy',
     views: 1247,
-    excerpt: '전북 바이오 클러스터가 글로벌 바이오 허브로 거듭나기 위한 종합 발전 계획을 발표했습니다. 이번 계획을 통해 향후 5년간 혁신적인 바이오 생태계 구축을 목표로 합니다.'
+    excerpt: 'Jeonbuk Bio Cluster has announced a comprehensive development plan to become a global bio hub. The plan aims to build an innovative bio ecosystem over the next five years.'
   },
   {
     id: '2',
-    title: '바이오 스타트업 투자 유치 설명회: 혁신 기업과 투자자의 만남',
+    title: 'Bio Startup Investment Pitching Session: A Meeting of Innovative Companies and Investors',
     date: '2025-09-15',
-    category: '행사',
+    category: 'Event',
     isEvent: true,
     views: 892,
-    location: '전주 컨벤션센터',
+    location: 'Jeonju Convention Center',
     eventDate: '2025-09-15',
-    excerpt: '전북 바이오 스타트업과 국내외 투자자들이 만나는 특별한 기회입니다. 유망한 바이오 기업들의 혁신 기술과 사업 모델을 소개합니다.'
+    excerpt: 'A special opportunity for Jeonbuk bio startups to meet domestic and foreign investors. Showcasing innovative technologies and business models of promising bio companies.'
   },
   {
     id: '3',
-    title: '전북 바이오기업 수출 1억 달러 돌파, 성장세 지속',
+    title: 'Jeonbuk Bio-Companies Surpass $100 Million in Exports, Continuing Growth',
     date: '2025-08-25',
-    category: '성과',
+    category: 'Achievement',
     views: 1456,
-    excerpt: '전북 바이오기업들의 수출 실적이 사상 최초로 1억 달러를 넘어서며, 글로벌 시장에서의 경쟁력을 입증했습니다.'
+    excerpt: 'The export performance of Jeonbuk bio-companies has exceeded $100 million for the first time, proving their competitiveness in the global market.'
   },
   {
     id: '4',
-    title: 'K-바이오 랩허브 전북 유치 확정, 바이오 생태계 혁신 가속화',
+    title: 'K-Bio Lab Hub Confirmed for Jeonbuk, Accelerating Bio-Ecosystem Innovation',
     date: '2025-08-20',
-    category: '정책',
+    category: 'Policy',
     views: 2103,
-    excerpt: '정부의 K-바이오 랩허브 사업이 전북에 유치되면서, 지역 바이오 생태계의 혁신적 발전이 기대됩니다.'
+    excerpt: 'With the government\'s K-Bio Lab Hub project secured for Jeonbuk, innovative development of the regional bio-ecosystem is anticipated.'
   },
   {
     id: '5',
-    title: '바이오 융합기술 워크샵: 미래 기술 동향과 협력 방안 모색',
+    title: 'Bio-Convergence Technology Workshop: Exploring Future Tech Trends and Cooperation',
     date: '2025-10-12',
-    category: '행사',
+    category: 'Event',
     isEvent: true,
     views: 654,
-    location: '익산 바이오사이언스센터',
+    location: 'Iksan Bio-Science Center',
     eventDate: '2025-10-12',
-    excerpt: '바이오와 ICT, AI 등 첨단 기술의 융합을 통한 혁신 방향을 논의하는 전문가 워크샵입니다.'
+    excerpt: 'An expert workshop to discuss innovation directions through the convergence of bio with advanced technologies like ICT and AI.'
   },
   {
     id: '6',
-    title: '전북 바이오기업 협력 네트워크 출범식',
+    title: 'Launch of Jeonbuk Bio-Company Cooperation Network',
     date: '2025-08-15',
-    category: '협력',
+    category: 'Cooperation',
     views: 823,
-    excerpt: '전북 바이오기업들의 상호 협력과 공동 성장을 위한 네트워크가 공식 출범했습니다.'
+    excerpt: 'A network for mutual cooperation and joint growth among Jeonbuk bio-companies has been officially launched.'
   },
   {
     id: '7',
-    title: '바이오 임상시험센터 착공식: 글로벌 수준의 연구 인프라 구축',
+    title: 'Groundbreaking Ceremony for Bio Clinical Trial Center: Building Global-Level Research Infrastructure',
     date: '2025-11-05',
-    category: '행사',
+    category: 'Event',
     isEvent: true,
     views: 567,
-    location: '전주 바이오밸리',
+    location: 'Jeonju Bio Valley',
     eventDate: '2025-11-05',
-    excerpt: '세계적 수준의 바이오 임상시험센터 건설이 시작되어, 지역 바이오 연구 역량 강화에 기여할 예정입니다.'
+    excerpt: 'Construction of a world-class bio clinical trial center has begun, expected to enhance regional bio-research capabilities.'
   },
   {
     id: '8',
-    title: '바이오 제조업 혁신 성과 발표: 스마트 팩토리 도입 확산',
+    title: 'Bio-Manufacturing Innovation Achievements Announced: Expansion of Smart Factory Adoption',
     date: '2025-08-10',
-    category: '성과',
+    category: 'Achievement',
     views: 934,
-    excerpt: '전북 바이오 제조업체들의 스마트 팩토리 도입 성과가 발표되며, 생산성 향상과 품질 개선 효과를 확인했습니다.'
+    excerpt: 'The results of smart factory adoption by Jeonbuk bio-manufacturers were announced, confirming improvements in productivity and quality.'
   },
   {
     id: '9',
-    title: '국제 바이오 컨퍼런스 2025 개최 확정',
+    title: 'International Bio Conference 2025 Confirmed',
     date: '2025-12-15',
-    category: '행사',
+    category: 'Event',
     isEvent: true,
     views: 1123,
-    location: '전주 컨벤션센터',
+    location: 'Jeonju Convention Center',
     eventDate: '2025-12-15',
-    excerpt: '아시아 최대 규모의 국제 바이오 컨퍼런스가 전북에서 개최되어, 글로벌 바이오 허브로서의 위상을 높일 예정입니다.'
+    excerpt: 'Asia\'s largest international bio conference will be held in Jeonbuk, enhancing its status as a global bio hub.'
   },
   {
     id: '10',
-    title: '바이오 스케일업 프로그램 성과 보고: 고속 성장 기업 배출',
+    title: 'Bio Scale-Up Program Performance Report: Producing High-Growth Companies',
     date: '2025-08-05',
-    category: '성과',
+    category: 'Achievement',
     views: 745,
-    excerpt: '전북 바이오 스케일업 프로그램을 통해 다수의 고속 성장 기업들이 배출되며, 프로그램의 성공을 입증했습니다.'
+    excerpt: 'Numerous high-growth companies have been produced through the Jeonbuk Bio Scale-Up Program, proving its success.'
   }
 ];
 
 const COMPANIES: Company[] = [
   { 
     id: '1', 
-    name: '바이오셀', 
-    sector: '바이오의약품', 
+    name: 'BioCell',
+    sector: 'Biopharmaceuticals',
     logo: 'BC', 
     founded: 2019, 
     employees: 45, 
-    revenue: '120억원',
-    description: '혁신적인 세포치료제 개발에 특화된 바이오의약품 전문 기업'
+    revenue: '$12M',
+    description: 'A biopharmaceutical company specializing in the development of innovative cell therapies.'
   },
   { 
     id: '2', 
-    name: '진바이오텍', 
-    sector: '진단시약', 
+    name: 'GeneBioTech',
+    sector: 'Diagnostic Reagents',
     logo: 'JB', 
     founded: 2020, 
     employees: 32, 
-    revenue: '85억원',
-    description: '정밀 진단 기술을 기반으로 한 차세대 진단시약 개발 기업'
+    revenue: '$8.5M',
+    description: 'A company developing next-generation diagnostic reagents based on precision diagnostic technology.'
   },
   { 
     id: '3', 
-    name: '메디컬바이오', 
-    sector: '의료기기', 
+    name: 'MedicalBio',
+    sector: 'Medical Devices',
     logo: 'MB', 
     founded: 2018, 
     employees: 67, 
-    revenue: '250억원',
-    description: 'AI 기반 스마트 의료기기 솔루션을 제공하는 선도 기업'
+    revenue: '$25M',
+    description: 'A leading company providing AI-based smart medical device solutions.'
   },
   { 
     id: '4', 
-    name: '바이오젠', 
-    sector: '바이오소재', 
+    name: 'BioGen',
+    sector: 'Biomaterials',
     logo: 'BG', 
     founded: 2021, 
     employees: 28, 
-    revenue: '95억원',
-    description: '친환경 바이오소재 개발 및 생산을 전문으로 하는 혁신 기업'
+    revenue: '$9.5M',
+    description: 'An innovative company specializing in the development and production of eco-friendly biomaterials.'
   },
   { 
     id: '5', 
-    name: '셀테라피', 
-    sector: '세포치료제', 
+    name: 'CellTherapy',
+    sector: 'Cell Therapy',
     logo: 'CT', 
     founded: 2017, 
     employees: 55, 
-    revenue: '180억원',
-    description: '줄기세포 기반 세포치료제 개발의 글로벌 리더'
+    revenue: '$18M',
+    description: 'A global leader in the development of stem cell-based cell therapies.'
   },
   { 
     id: '6', 
-    name: '바이오팜', 
-    sector: '바이오의약품', 
+    name: 'BioPharm',
+    sector: 'Biopharmaceuticals',
     logo: 'BP', 
     founded: 2020, 
     employees: 38, 
-    revenue: '110억원',
-    description: '개인 맞춤형 바이오의약품 개발에 특화된 전문 기업'
+    revenue: '$11M',
+    description: 'A specialized company focused on developing personalized biopharmaceuticals.'
   },
   { 
     id: '7', 
-    name: '진메드', 
-    sector: '진단시약', 
+    name: 'GeneMed',
+    sector: 'Diagnostic Reagents',
     logo: 'JM', 
     founded: 2019, 
     employees: 41, 
-    revenue: '130억원',
-    description: '분자진단 기술을 활용한 차세대 진단 솔루션 제공'
+    revenue: '$13M',
+    description: 'Providing next-generation diagnostic solutions using molecular diagnostic technology.'
   },
   { 
     id: '8', 
-    name: '바이오솔루션', 
-    sector: '의료기기', 
+    name: 'BioSolution',
+    sector: 'Medical Devices',
     logo: 'BS', 
     founded: 2018, 
     employees: 59, 
-    revenue: '210억원',
-    description: '디지털 헬스케어 솔루션과 의료기기를 융합한 토탈 솔루션 기업'
+    revenue: '$21M',
+    description: 'A total solution company combining digital healthcare solutions and medical devices.'
   },
   { 
     id: '9', 
-    name: '뉴바이오', 
-    sector: '바이오소재', 
+    name: 'NewBio',
+    sector: 'Biomaterials',
     logo: 'NB', 
     founded: 2020, 
     employees: 34, 
-    revenue: '90억원',
-    description: '신재생 바이오소재 연구개발 및 상용화 전문 기업'
+    revenue: '$9M',
+    description: 'A company specializing in R&D and commercialization of renewable biomaterials.'
   },
   { 
     id: '10', 
-    name: '셀케어', 
-    sector: '세포치료제', 
+    name: 'CellCare',
+    sector: 'Cell Therapy',
     logo: 'CC', 
     founded: 2019, 
     employees: 42, 
-    revenue: '155억원',
-    description: '면역세포치료제 개발 및 생산을 위한 차세대 바이오 플랫폼'
+    revenue: '$15.5M',
+    description: 'A next-generation bio platform for the development and production of immunotherapy drugs.'
   },
   { 
     id: '11', 
-    name: '바이오테크', 
-    sector: '바이오의약품', 
+    name: 'BioTech',
+    sector: 'Biopharmaceuticals',
     logo: 'BT', 
     founded: 2021, 
     employees: 29, 
-    revenue: '75억원',
-    description: '항체 기반 치료제 개발에 특화된 신생 바이오테크 기업'
+    revenue: '$7.5M',
+    description: 'A new biotech company specializing in the development of antibody-based therapeutics.'
   },
   { 
     id: '12', 
-    name: '메드바이오', 
-    sector: '의료기기', 
+    name: 'MedBio',
+    sector: 'Medical Devices',
     logo: 'MD', 
     founded: 2018, 
     employees: 63, 
-    revenue: '190억원',
-    description: '정밀의료를 위한 고도화된 의료기기 및 소프트웨어 개발'
+    revenue: '$19M',
+    description: 'Developing advanced medical devices and software for precision medicine.'
   }
 ];
 
 const PATENTS: Patent[] = [
   {
     id: '1',
-    title: '줄기세포 배양 최적화 기술',
-    applicant: '전북대학교',
-    field: '바이오의약품',
+    title: 'Stem Cell Culture Optimization Technology',
+    applicant: 'Jeonbuk National University',
+    field: 'Biopharmaceuticals',
     year: 2024,
-    status: '등록',
+    status: 'Registered',
     citations: 12,
-    description: '줄기세포의 대량 배양과 분화 효율을 극대화하는 혁신 기술'
+    description: 'Innovative technology to maximize the efficiency of mass culture and differentiation of stem cells.'
   },
   {
     id: '2',
-    title: '진단 키트 개발 방법',
-    applicant: '바이오셀',
-    field: '진단시약',
+    title: 'Diagnostic Kit Development Method',
+    applicant: 'BioCell',
+    field: 'Diagnostic Reagents',
     year: 2024,
-    status: '등록',
+    status: 'Registered',
     citations: 8,
-    description: '신속하고 정확한 질병 진단을 위한 차세대 진단 키트 기술'
+    description: 'Next-generation diagnostic kit technology for rapid and accurate disease diagnosis.'
   },
   {
     id: '3',
-    title: '바이오소재 합성 공정',
-    applicant: '원광대학교',
-    field: '바이오소재',
+    title: 'Biomaterial Synthesis Process',
+    applicant: 'Wonkwang University',
+    field: 'Biomaterials',
     year: 2023,
-    status: '출원중',
+    status: 'Pending',
     citations: 15,
-    description: '친환경적이고 지속가능한 바이오소재 대량 생산 공정 기술'
+    description: 'An eco-friendly and sustainable mass production process for biomaterials.'
   }
 ];
 
@@ -522,18 +522,20 @@ const Button: React.FC<{
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
-  onClick?: () => void;
+  onClick?: (() => void) | ((e: React.MouseEvent<HTMLButtonElement>) => void);
   className?: string;
   'aria-label'?: string;
   disabled?: boolean;
-}> = ({ 
-  children, 
-  variant = 'primary', 
-  size = 'md', 
-  onClick, 
+  type?: 'button' | 'submit' | 'reset';
+}> = ({
+  children,
+  variant = 'primary',
+  size = 'md',
+  onClick,
   className = '',
   'aria-label': ariaLabel,
-  disabled = false
+  disabled = false,
+  type = 'button'
 }) => {
   const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all duration-200 focus:outline-none focus:ring-3 focus:ring-blue-200 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   const variants = {
@@ -560,18 +562,24 @@ const Button: React.FC<{
   );
 };
 
-const Card: React.FC<{
-  children: React.ReactNode;
+interface CardProps {
+  children: ReactNode;
   className?: string;
   hover?: boolean;
   onClick?: () => void;
-}> = ({ children, className = '', hover = false, onClick }) => {
+  role?: string;
+  tabIndex?: number;
+  'aria-label'?: string;
+}
+
+const Card: React.FC<CardProps> = ({ children, className = '', hover = false, onClick, ...props }) => {
   return (
     <div 
       className={`bg-white border border-gray-200 transition-all duration-200 ${
         hover ? 'hover:shadow-lg hover:border-gray-300' : ''
       } ${onClick ? 'cursor-pointer' : ''} ${className}`}
       onClick={onClick}
+      {...props}
     >
       {children}
     </div>
@@ -605,10 +613,14 @@ const SectionHeader: React.FC<{
       observer.observe(ref.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
   }, [fadeIn]);
 
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+  const Tag = `h${level}` as 'h2' | 'h3';
   const titleSize = level === 2 ? 'text-6xl' : 'text-4xl';
   
   return (
@@ -715,12 +727,12 @@ const Navbar: React.FC = () => {
             <div className="text-3xl font-bold text-blue-900">JB SQUARE</div>
           </div>
           <div className="hidden md:flex space-x-12">
-            <a href="#cluster" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">클러스터 소개</a>
-            <a href="#programs" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">지원사업</a>
-            <a href="#centers" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">보육센터</a>
-            <a href="#news" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">뉴스·행사</a>
-            <a href="#companies" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">기업정보</a>
-            <a href="#patents" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">기술·특허</a>
+            <a href="#cluster" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">Cluster</a>
+            <a href="#programs" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">Programs</a>
+            <a href="#centers" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">Centers</a>
+            <a href="#news" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">News</a>
+            <a href="#companies" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">Companies</a>
+            <a href="#patents" className="text-lg text-gray-700 hover:text-blue-900 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:ring-offset-2">Patents</a>
           </div>
         </div>
       </div>
@@ -736,34 +748,34 @@ const Footer: React.FC = () => {
           <div>
             <div className="text-2xl font-bold mb-6">JB SQUARE</div>
             <p className="text-gray-300 leading-relaxed">
-              전북산업 대전환과 기업 고도성장을 선도하는 Next 전북, Best TP
+              Leading the great transition of Jeonbuk industry and the high growth of companies.
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-6">서비스</h3>
+            <h3 className="text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">클러스터 소개</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">지원사업 공고</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">창업보육센터</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">About Cluster</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Support Programs</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Incubation Centers</a></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-6">정보</h3>
+            <h3 className="text-lg font-semibold mb-6">Information</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">바이오뉴스</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">기업정보</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">기술·특허</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Bio News</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Company Directory</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Technology & Patents</a></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-6">연락처</h3>
-            <p className="text-gray-300 mb-3">전라북도 전주시 덕진구 기술순환로 392</p>
-            <p className="text-gray-300 mb-3">TEL: 063-219-3200</p>
+            <h3 className="text-lg font-semibold mb-6">Contact</h3>
+            <p className="text-gray-300 mb-3">392, Gwahak-ro, Deokjin-gu, Jeonju-si, Jeollabuk-do</p>
+            <p className="text-gray-300 mb-3">TEL: +82-63-219-3200</p>
             <p className="text-gray-300">EMAIL: info@jbtp.or.kr</p>
           </div>
         </div>
         <div className="border-t border-gray-700 mt-12 pt-8 text-center">
-          <p className="text-gray-400">© 2025 전북테크노파크. All rights reserved.</p>
+          <p className="text-gray-400">© 2025 Jeonbuk Technopark. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -777,7 +789,7 @@ const JBSquareF2: React.FC = () => {
   const [programSort, setProgramSort] = useState<'deadline' | 'popularity'>('deadline');
   const [newsTab, setNewsTab] = useState<'all' | 'news' | 'events'>('all');
   const [newsSort, setNewsSort] = useState<'date' | 'views'>('date');
-  const [companySector, setCompanySector] = useState<string>('전체');
+  const [companySector, setCompanySector] = useState<string>('All');
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -828,10 +840,11 @@ const JBSquareF2: React.FC = () => {
 
   // Filtered companies
   const filteredCompanies = COMPANIES.filter(company => 
-    companySector === '전체' || company.sector === companySector
+    companySector === 'All' || company.sector === companySector
   );
 
-  const handleNewsletterSubmit = () => {
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (!newsletterEmail || !newsletterEmail.includes('@')) {
       setNewsletterStatus('error');
       return;
@@ -843,7 +856,7 @@ const JBSquareF2: React.FC = () => {
   };
 
   // Helper functions
-  const getBadgeVariant = (status: string, daysLeft: number) => {
+  const getBadgeVariant = (status: string, daysLeft: number): 'error' | 'warning' | 'success' | 'info' => {
     if (status === 'closed') return 'error';
     if (daysLeft <= 7) return 'warning';
     if (status === 'active') return 'success';
@@ -851,10 +864,10 @@ const JBSquareF2: React.FC = () => {
   };
 
   const getBadgeText = (status: string, daysLeft: number) => {
-    if (status === 'closed') return '마감';
+    if (status === 'closed') return 'Closed';
     if (daysLeft <= 7) return `D-${daysLeft}`;
-    if (status === 'active') return '접수중';
-    return '예정';
+    if (status === 'active') return 'Active';
+    return 'Upcoming';
   };
 
   // Count calculations for tabs
@@ -883,17 +896,16 @@ const JBSquareF2: React.FC = () => {
             </h1>
             <div className="max-w-4xl mx-auto mb-12">
               <p className="text-3xl text-gray-700 mb-6 leading-relaxed">
-                전북산업 대전환과 기업 고도성장을 선도하는
+                Leading the Great Transformation of Jeonbuk Industry and High Growth of Companies
               </p>
               <p className="text-4xl font-semibold text-blue-900 mb-8">
-                Next 전북, Best TP
+                Next Jeonbuk, Best TP
               </p>
               <div className="max-w-3xl mx-auto">
                 <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                  혁신적인 바이오 생태계를 통해 전북을 글로벌 바이오 허브로 도약시키며, 
-                  지역 기업의 성장과 새로운 미래 산업을 창조합니다. 우리는 연구개발부터 
-                  상용화까지 전 과정을 지원하는 통합형 플랫폼으로서, 
-                  바이오 혁신의 새로운 패러다임을 제시합니다.
+                  Through an innovative bio-ecosystem, we are elevating Jeonbuk to a global bio hub,
+                  fostering the growth of local enterprises and creating new future industries. As an integrated platform
+                  supporting the entire process from R&D to commercialization, we present a new paradigm of bio-innovation.
                 </p>
               </div>
             </div>
@@ -903,7 +915,7 @@ const JBSquareF2: React.FC = () => {
                 className="px-12 py-5 text-xl"
                 onClick={() => scrollToSection('programs')}
               >
-                지원사업 살펴보기
+                Explore Programs
               </Button>
               <Button 
                 variant="outline" 
@@ -911,7 +923,7 @@ const JBSquareF2: React.FC = () => {
                 className="px-12 py-5 text-xl"
                 onClick={() => scrollToSection('cluster')}
               >
-                클러스터 소개 보기
+                About Cluster
               </Button>
               <Button 
                 variant="secondary" 
@@ -919,7 +931,7 @@ const JBSquareF2: React.FC = () => {
                 className="px-12 py-5 text-xl"
                 onClick={() => scrollToSection('companies')}
               >
-                기업정보 확인하기
+                Find Companies
               </Button>
             </div>
           </div>
@@ -930,90 +942,81 @@ const JBSquareF2: React.FC = () => {
           <div className="max-w-6xl mx-auto px-16">
             <SectionHeader 
               leadText="INNOVATION ECOSYSTEM"
-              title="JB BIO 클러스터" 
-              subtitle="전북의 바이오 산업 생태계는 첨단 연구개발부터 상용화까지 전 과정을 아우르는 통합형 혁신 플랫폼입니다. 우리는 지역의 우수한 인재와 기술력을 바탕으로 글로벌 바이오 시장을 선도하는 새로운 성장 동력을 만들어가고 있습니다."
+              title="JB BIO Cluster"
+              subtitle="The bio-industry ecosystem of Jeonbuk is an integrated innovation platform that covers the entire process from advanced R&D to commercialization. Based on the region's excellent talent and technological capabilities, we are creating a new growth engine to lead the global bio market."
               fadeIn
             />
             
             <div className="bg-white border border-gray-200 p-12">
               <div className="prose prose-xl max-w-none">
                 <p className="text-xl leading-relaxed text-gray-700 mb-12">
-                  전북 바이오 클러스터는 바이오의약품, 의료기기, 진단시약 등 다양한 분야에서 
-                  혁신 기업들이 모여 시너지를 창출하는 핵심 거점입니다. 
-                  연구개발부터 제조, 마케팅까지 밸류체인 전반에 걸친 생태계를 구축하여 
-                  글로벌 경쟁력을 갖춘 바이오 허브로 성장하고 있습니다.
+                  The Jeonbuk Bio Cluster is a key hub where innovative companies in various fields such as biopharmaceuticals, medical devices, and diagnostic reagents gather to create synergy. By establishing an ecosystem covering the entire value chain from R&D to manufacturing and marketing, it is growing into a bio hub with global competitiveness.
                 </p>
                 
                 <div className="bg-blue-50 p-8 my-12">
                   <blockquote className="text-2xl font-medium text-blue-900 leading-relaxed italic border-l-4 border-blue-900 pl-6">
-                    "바이오 산업의 미래는 협력과 혁신에 달려 있습니다. 
-                    JB SQUARE는 이러한 비전을 현실로 만드는 플랫폼입니다. 
-                    우리는 단순한 공간 제공을 넘어 진정한 혁신 생태계를 만들어가고 있습니다."
+                    "The future of the bio-industry depends on cooperation and innovation. JB SQUARE is the platform that makes this vision a reality. We are creating a true innovation ecosystem beyond simply providing space."
                   </blockquote>
-                  <cite className="text-blue-700 text-base mt-4 block">전북테크노파크 원장</cite>
+                  <cite className="text-blue-700 text-base mt-4 block">President, Jeonbuk Technopark</cite>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-16 my-16">
                   <div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-8">핵심 역량</h3>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-8">Core Competencies</h3>
                     <ul className="space-y-6 text-lg text-gray-700">
                       <li className="flex items-start">
                         <span className="font-bold text-blue-900 mr-4 text-xl">•</span>
                         <div>
-                          <strong className="text-gray-900">연구개발 인프라:</strong> 
-                          <p className="mt-1">전북대, 원광대 등 우수 연구진과 첨단 연구시설을 보유하여 
-                          기초연구부터 응용연구까지 전 영역을 커버합니다.</p>
+                          <strong className="text-gray-900">R&D Infrastructure:</strong>
+                          <p className="mt-1">With excellent researchers from Jeonbuk National University and Wonkwang University and advanced research facilities, we cover all areas from basic to applied research.</p>
                         </div>
                       </li>
                       <li className="flex items-start">
                         <span className="font-bold text-blue-900 mr-4 text-xl">•</span>
                         <div>
-                          <strong className="text-gray-900">사업화 지원 체계:</strong>
-                          <p className="mt-1">창업부터 글로벌 진출까지 단계별 맞춤 지원을 통해 
-                          연구 성과가 시장 성과로 이어지도록 돕습니다.</p>
+                          <strong className="text-gray-900">Commercialization Support System:</strong>
+                          <p className="mt-1">We help turn research results into market success through tailored support at each stage, from startup to global expansion.</p>
                         </div>
                       </li>
                       <li className="flex items-start">
                         <span className="font-bold text-blue-900 mr-4 text-xl">•</span>
                         <div>
-                          <strong className="text-gray-900">협력 네트워크:</strong>
-                          <p className="mt-1">기업, 연구소, 투자기관 간 유기적 협력 체계를 구축하여 
-                          혁신적인 파트너십을 창출합니다.</p>
+                          <strong className="text-gray-900">Cooperation Network:</strong>
+                          <p className="mt-1">We create innovative partnerships by establishing an organic cooperation system between companies, research institutes, and investment institutions.</p>
                         </div>
                       </li>
                       <li className="flex items-start">
                         <span className="font-bold text-blue-900 mr-4 text-xl">•</span>
                         <div>
-                          <strong className="text-gray-900">정책 연계:</strong>
-                          <p className="mt-1">K-바이오 등 국가 핵심 정책과 직접 연결되어 
-                          안정적이고 지속가능한 성장 기반을 제공합니다.</p>
+                          <strong className="text-gray-900">Policy Linkage:</strong>
+                          <p className="mt-1">Directly linked to national key policies such as K-Bio, we provide a stable and sustainable growth foundation.</p>
                         </div>
                       </li>
                     </ul>
                   </div>
                   
                   <div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-8">주요 성과</h3>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-8">Key Achievements</h3>
                     <div className="space-y-8">
                       <div className="bg-gray-50 p-8">
                         <div className="text-4xl font-bold text-blue-900 mb-3">150+</div>
-                        <div className="text-lg text-gray-700 mb-2">입주 기업 및 연구소</div>
+                        <div className="text-lg text-gray-700 mb-2">Resident Companies & Labs</div>
                         <p className="text-sm text-gray-600">
-                          다양한 분야의 혁신 기업들이 집적되어 시너지 효과를 창출하고 있습니다.
+                          Innovative companies from various fields are clustered, creating synergy.
                         </p>
                       </div>
                       <div className="bg-gray-50 p-8">
-                        <div className="text-4xl font-bold text-green-600 mb-3">2,500억원</div>
-                        <div className="text-lg text-gray-700 mb-2">연간 매출 규모</div>
+                        <div className="text-4xl font-bold text-green-600 mb-3">$250M</div>
+                        <div className="text-lg text-gray-700 mb-2">Annual Revenue</div>
                         <p className="text-sm text-gray-600">
-                          지속적인 성장을 통해 지역 경제에 크게 기여하고 있습니다.
+                          Contributing significantly to the local economy through continuous growth.
                         </p>
                       </div>
                       <div className="bg-gray-50 p-8">
                         <div className="text-4xl font-bold text-blue-900 mb-3">85%</div>
-                        <div className="text-lg text-gray-700 mb-2">기업 생존율 (5년 기준)</div>
+                        <div className="text-lg text-gray-700 mb-2">5-Year Survival Rate</div>
                         <p className="text-sm text-gray-600">
-                          체계적인 지원을 통해 높은 성공률을 기록하고 있습니다.
+                          Achieving a high success rate through systematic support.
                         </p>
                       </div>
                     </div>
@@ -1029,8 +1032,8 @@ const JBSquareF2: React.FC = () => {
           <div className="max-w-7xl mx-auto px-16">
             <SectionHeader 
               leadText="GROWTH SUPPORT"
-              title="지원사업 공고" 
-              subtitle="바이오 기업의 성장 단계별 맞춤 지원을 통해 혁신적인 아이디어가 글로벌 시장에서 성공할 수 있도록 돕습니다. 창업부터 스케일업까지, 각 단계에 최적화된 프로그램을 제공하여 지속가능한 성장을 지원합니다."
+              title="Support Programs"
+              subtitle="We help innovative ideas succeed in the global market through tailored support for each growth stage of bio-companies. From startup to scale-up, we provide optimized programs to support sustainable growth."
               fadeIn
             />
             
@@ -1038,9 +1041,9 @@ const JBSquareF2: React.FC = () => {
             <div className="mb-8">
               <Tabs
                 tabs={[
-                  { key: 'all', label: '전체', count: programCounts.all },
-                  { key: 'active', label: '접수중', count: programCounts.active },
-                  { key: 'upcoming', label: '예정', count: programCounts.upcoming }
+                  { key: 'all', label: 'All', count: programCounts.all },
+                  { key: 'active', label: 'Active', count: programCounts.active },
+                  { key: 'upcoming', label: 'Upcoming', count: programCounts.upcoming }
                 ]}
                 activeTab={programTab}
                 onChange={(key) => setProgramTab(key as 'all' | 'active' | 'upcoming')}
@@ -1052,10 +1055,10 @@ const JBSquareF2: React.FC = () => {
                   value={programSort}
                   onChange={(e) => setProgramSort(e.target.value as 'deadline' | 'popularity')}
                   className="px-4 py-2 border border-gray-300 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                  aria-label="정렬 방식"
+                  aria-label="Sort by"
                 >
-                  <option value="deadline">마감 임박순</option>
-                  <option value="popularity">인기순</option>
+                  <option value="deadline">Deadline</option>
+                  <option value="popularity">Popularity</option>
                 </select>
               </div>
             </div>
@@ -1082,29 +1085,29 @@ const JBSquareF2: React.FC = () => {
                         {program.description}
                       </p>
                       <div className="text-sm text-gray-500 space-y-1">
-                        <p>주관기관: {program.host}</p>
-                        <p>마감일: {program.deadline}</p>
+                        <p>Host: {program.host}</p>
+                        <p>Deadline: {program.deadline}</p>
                       </div>
                     </div>
                     
                     <div className="text-center">
                       <div className="text-3xl font-bold text-blue-900 mb-2">{program.budget}</div>
-                      <div className="text-sm text-gray-600">지원 규모</div>
+                      <div className="text-sm text-gray-600">Budget</div>
                       <div className="mt-4 pt-4 border-t border-gray-200">
                         <div className="text-lg font-bold text-green-600 mb-1">{program.popularity}</div>
-                        <div className="text-xs text-gray-500">인기도</div>
+                        <div className="text-xs text-gray-500">Popularity</div>
                       </div>
                     </div>
                     
                     <div className="flex flex-col gap-3">
                       <Button size="md" className="w-full">
-                        상세정보 보기
+                        View Details
                       </Button>
                       <Button size="md" variant="outline" className="w-full">
-                        신청서 다운로드
+                        Download Application
                       </Button>
                       <Button size="sm" variant="ghost" className="w-full text-sm">
-                        북마크 추가
+                        Add to Bookmarks
                       </Button>
                     </div>
                   </div>
@@ -1114,7 +1117,7 @@ const JBSquareF2: React.FC = () => {
             
             <div className="text-center">
               <Button size="lg" className="px-12 py-4 text-lg">
-                모든 지원사업 보기
+                View All Programs
               </Button>
             </div>
           </div>
@@ -1125,8 +1128,8 @@ const JBSquareF2: React.FC = () => {
           <div className="max-w-7xl mx-auto px-16">
             <SectionHeader 
               leadText="LATEST UPDATES"
-              title="바이오뉴스 & 행사" 
-              subtitle="전북 바이오 생태계의 최신 소식과 주요 행사 정보를 한눈에 확인하세요. 업계 동향부터 정책 변화까지, 비즈니스에 필요한 핵심 정보를 제공하여 빠르게 변화하는 바이오 산업의 흐름을 파악할 수 있습니다."
+              title="Bio News & Events"
+              subtitle="Get the latest news and major event information from the Jeonbuk bio-ecosystem at a glance. From industry trends to policy changes, we provide essential business information to help you keep up with the fast-changing bio-industry."
               fadeIn
             />
             
@@ -1134,9 +1137,9 @@ const JBSquareF2: React.FC = () => {
             <div className="mb-8">
               <Tabs
                 tabs={[
-                  { key: 'all', label: '전체', count: newsCounts.all },
-                  { key: 'news', label: '뉴스', count: newsCounts.news },
-                  { key: 'events', label: '행사', count: newsCounts.events }
+                  { key: 'all', label: 'All', count: newsCounts.all },
+                  { key: 'news', label: 'News', count: newsCounts.news },
+                  { key: 'events', label: 'Events', count: newsCounts.events }
                 ]}
                 activeTab={newsTab}
                 onChange={(key) => setNewsTab(key as 'all' | 'news' | 'events')}
@@ -1148,10 +1151,10 @@ const JBSquareF2: React.FC = () => {
                   value={newsSort}
                   onChange={(e) => setNewsSort(e.target.value as 'date' | 'views')}
                   className="px-4 py-2 border border-gray-300 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                  aria-label="정렬 방식"
+                  aria-label="Sort by"
                 >
-                  <option value="date">최신순</option>
-                  <option value="views">조회수순</option>
+                  <option value="date">Latest</option>
+                  <option value="views">Most Viewed</option>
                 </select>
               </div>
             </div>
@@ -1162,7 +1165,7 @@ const JBSquareF2: React.FC = () => {
                 <div className="grid grid-cols-3 gap-12 items-start">
                   <div className="col-span-2">
                     <div className="flex items-center gap-3 mb-4">
-                      <Badge variant="info" size="md">특집</Badge>
+                      <Badge variant="info" size="md">Featured</Badge>
                       <Badge variant={filteredNews[0].isEvent ? 'warning' : 'default'}>
                         {filteredNews[0].category}
                       </Badge>
@@ -1181,7 +1184,7 @@ const JBSquareF2: React.FC = () => {
                     )}
                     <div className="flex items-center gap-4">
                       <Button size="lg">
-                        {filteredNews[0].isEvent ? '행사 정보 보기' : '전문 읽기'}
+                        {filteredNews[0].isEvent ? 'View Event Info' : 'Read Full Article'}
                       </Button>
                       <span className="text-sm text-gray-500">👁 {filteredNews[0].views.toLocaleString()}</span>
                     </div>
@@ -1218,7 +1221,7 @@ const JBSquareF2: React.FC = () => {
                   )}
                   <div className="flex justify-between items-center">
                     <Button size="sm" variant="outline">
-                      {item.isEvent ? '행사 정보' : '자세히 보기'}
+                      {item.isEvent ? 'Event Info' : 'Read More'}
                     </Button>
                     <span className="text-xs text-gray-500">👁 {item.views}</span>
                   </div>
@@ -1228,7 +1231,7 @@ const JBSquareF2: React.FC = () => {
             
             <div className="text-center mt-12">
               <Button size="lg" className="px-12 py-4 text-lg">
-                모든 뉴스 보기
+                View All News
               </Button>
             </div>
           </div>
@@ -1239,8 +1242,8 @@ const JBSquareF2: React.FC = () => {
           <div className="max-w-7xl mx-auto px-16">
             <SectionHeader 
               leadText="INNOVATION NETWORK"
-              title="JB 기업정보" 
-              subtitle="전북 바이오 클러스터에 입주한 혁신 기업들을 만나보세요. 각 분야의 전문 기업들이 만들어가는 성공 스토리와 함께 새로운 비즈니스 기회를 발견하실 수 있습니다. 우리는 단순한 입주 공간을 넘어 진정한 협력 파트너십을 구축합니다."
+              title="JB Company Directory"
+              subtitle="Meet the innovative companies residing in the Jeonbuk Bio Cluster. Discover new business opportunities along with the success stories created by specialized companies in each field. We build true cooperative partnerships beyond just providing space."
               fadeIn
             />
             
@@ -1250,14 +1253,14 @@ const JBSquareF2: React.FC = () => {
                 value={companySector}
                 onChange={(e) => setCompanySector(e.target.value)}
                 className="px-6 py-3 text-lg border border-gray-300 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                aria-label="기업 분야 필터"
+                aria-label="Filter by company sector"
               >
-                <option value="전체">전체 분야</option>
-                <option value="바이오의약품">바이오의약품</option>
-                <option value="의료기기">의료기기</option>
-                <option value="진단시약">진단시약</option>
-                <option value="바이오소재">바이오소재</option>
-                <option value="세포치료제">세포치료제</option>
+                <option value="All">All Sectors</option>
+                <option value="Biopharmaceuticals">Biopharmaceuticals</option>
+                <option value="Medical Devices">Medical Devices</option>
+                <option value="Diagnostic Reagents">Diagnostic Reagents</option>
+                <option value="Biomaterials">Biomaterials</option>
+                <option value="Cell Therapy">Cell Therapy</option>
               </select>
             </div>
             
@@ -1266,10 +1269,12 @@ const JBSquareF2: React.FC = () => {
               {filteredCompanies.map((company) => (
                 <Card
                   key={company.id}
-                  className="p-6 text-center transition-all duration-200 hover:shadow-lg hover:scale-105 cursor-pointer"
+                  className="p-6 text-center transition-all duration-200 hover:shadow-lg hover:scale-105"
+                  hover
+                  onClick={() => {}}
                   role="button"
                   tabIndex={0}
-                  aria-label={`${company.name} 정보 보기`}
+                  aria-label={`View details for ${company.name}`}
                 >
                   <div className="w-20 h-20 bg-blue-100 text-blue-900 font-bold text-2xl flex items-center justify-center mx-auto mb-4">
                     {company.logo}
@@ -1282,19 +1287,19 @@ const JBSquareF2: React.FC = () => {
                   <div className="grid grid-cols-3 gap-2 text-xs text-gray-500 mb-4">
                     <div>
                       <div className="font-medium text-gray-900">{company.founded}</div>
-                      <div>설립</div>
+                      <div>Founded</div>
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">{company.employees}</div>
-                      <div>직원수</div>
+                      <div>Employees</div>
                     </div>
                     <div>
                       <div className="font-medium text-gray-900">{company.revenue}</div>
-                      <div>매출</div>
+                      <div>Revenue</div>
                     </div>
                   </div>
                   <Button size="sm" variant="outline" className="w-full">
-                    기업정보 보기
+                    View Details
                   </Button>
                 </Card>
               ))}
@@ -1302,7 +1307,7 @@ const JBSquareF2: React.FC = () => {
             
             <div className="text-center">
               <Button size="lg" className="px-12 py-4 text-lg">
-                전체 기업 디렉토리 보기
+                View Full Company Directory
               </Button>
             </div>
           </div>
@@ -1313,37 +1318,37 @@ const JBSquareF2: React.FC = () => {
           <div className="max-w-7xl mx-auto px-16">
             <SectionHeader 
               leadText="INNOVATION HUBS"
-              title="창업보육센터 현황" 
-              subtitle="최적의 창업 환경과 전문적인 보육 서비스를 제공하는 전북의 바이오 창업보육센터들을 소개합니다. 각 센터는 특성화된 분야와 차별화된 서비스로 스타트업의 성공을 지원하며, 지역 전체가 하나의 거대한 혁신 생태계로 연결됩니다."
+              title="Incubation Center Status"
+              subtitle="Introducing Jeonbuk's bio-incubation centers that provide an optimal startup environment and professional incubation services. Each center supports the success of startups with specialized fields and differentiated services, connecting the entire region into one giant innovation ecosystem."
               fadeIn
             />
             
             <div className="grid grid-cols-4 gap-6 mb-16">
               <div className="bg-white border border-gray-200 p-6 text-center">
                 <div className="text-4xl font-bold text-blue-900 mb-2">{totalCenters}</div>
-                <div className="text-gray-700 font-medium">운영 센터 수</div>
-                <div className="text-xs text-gray-500 mt-2">개소</div>
+                <div className="text-gray-700 font-medium">Operating Centers</div>
+                <div className="text-xs text-gray-500 mt-2">centers</div>
               </div>
               <div className="bg-white border border-gray-200 p-6 text-center">
                 <div className="text-4xl font-bold text-blue-900 mb-2">{totalOccupancy}</div>
-                <div className="text-gray-700 font-medium">총 입주 기업</div>
-                <div className="text-xs text-gray-500 mt-2">개사</div>
+                <div className="text-gray-700 font-medium">Total Resident Companies</div>
+                <div className="text-xs text-gray-500 mt-2">companies</div>
               </div>
               <div className="bg-white border border-gray-200 p-6 text-center">
                 <div className="text-4xl font-bold text-green-600 mb-2">{occupancyRate}%</div>
-                <div className="text-gray-700 font-medium">평균 입주율</div>
+                <div className="text-gray-700 font-medium">Average Occupancy Rate</div>
                 <div className="text-xs text-green-600 mt-2">↗ +5%</div>
               </div>
               <div className="bg-white border border-gray-200 p-6 text-center">
                 <div className="text-4xl font-bold text-blue-900 mb-2">{totalCapacity}</div>
-                <div className="text-gray-700 font-medium">총 보유 공간</div>
-                <div className="text-xs text-gray-500 mt-2">실</div>
+                <div className="text-gray-700 font-medium">Total Available Spaces</div>
+                <div className="text-xs text-gray-500 mt-2">units</div>
               </div>
             </div>
             
             <div className="grid grid-cols-2 gap-16">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">보육센터 정보</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Incubation Center Information</h3>
                 <div className="space-y-6">
                   {CENTERS.map((center) => (
                     <Card 
@@ -1367,16 +1372,16 @@ const JBSquareF2: React.FC = () => {
                           </div>
                           <div className="flex items-center gap-4">
                             <Badge variant="info" size="sm">{center.region}</Badge>
-                            <Badge variant="default" size="sm">{center.established}년 설립</Badge>
+                            <Badge variant="default" size="sm">Est. {center.established}</Badge>
                           </div>
                         </div>
                         <div className="text-right ml-6">
                           <div className="text-2xl font-bold text-blue-900 mb-1">
                             {Math.round((center.occupancy / center.capacity) * 100)}%
                           </div>
-                          <div className="text-sm text-gray-500 mb-2">입주율</div>
+                          <div className="text-sm text-gray-500 mb-2">Occupancy</div>
                           <div className="text-lg font-medium text-gray-700">
-                            {center.occupancy}/{center.capacity}실
+                            {center.occupancy}/{center.capacity} units
                           </div>
                         </div>
                       </div>
@@ -1386,14 +1391,14 @@ const JBSquareF2: React.FC = () => {
               </div>
               
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">센터 위치 및 특화분야</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Center Locations & Specializations</h3>
                 <div className="bg-gray-100 p-8 min-h-[500px] relative mb-8">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-6xl text-gray-300 mb-4">🗺️</div>
-                      <p className="text-xl text-gray-500 mb-6">전북 바이오 클러스터 지도</p>
+                      <p className="text-xl text-gray-500 mb-6">Jeonbuk Bio Cluster Map</p>
                       <p className="text-sm text-gray-400">
-                        {CENTERS.length}개 보육센터가 전북 전역에 분포
+                        {CENTERS.length} incubation centers distributed throughout Jeonbuk
                       </p>
                     </div>
                   </div>
@@ -1405,31 +1410,31 @@ const JBSquareF2: React.FC = () => {
                       const center = CENTERS.find(c => c.id === selectedCenter);
                       return center ? (
                         <div>
-                          <h4 className="text-xl font-bold text-gray-900 mb-4">{center.name} 상세정보</h4>
+                          <h4 className="text-xl font-bold text-gray-900 mb-4">{center.name} Details</h4>
                           <div className="space-y-3 text-gray-600">
                             <div className="grid grid-cols-2 gap-4">
                               <div>
-                                <div className="text-sm text-gray-500">위치</div>
+                                <div className="text-sm text-gray-500">Location</div>
                                 <div className="font-medium">{center.location}</div>
                               </div>
                               <div>
-                                <div className="text-sm text-gray-500">특화분야</div>
+                                <div className="text-sm text-gray-500">Specialization</div>
                                 <div className="font-medium">{center.specialization}</div>
                               </div>
                               <div>
-                                <div className="text-sm text-gray-500">설립년도</div>
-                                <div className="font-medium">{center.established}년</div>
+                                <div className="text-sm text-gray-500">Established</div>
+                                <div className="font-medium">{center.established}</div>
                               </div>
                               <div>
-                                <div className="text-sm text-gray-500">연락처</div>
+                                <div className="text-sm text-gray-500">Contact</div>
                                 <div className="font-medium">{center.contact}</div>
                               </div>
                             </div>
                             <div className="pt-4 border-t border-gray-200">
                               <div className="flex justify-between items-center">
-                                <span>입주 현황</span>
+                                <span>Occupancy Status</span>
                                 <span className="font-bold text-blue-900">
-                                  {center.occupancy}실 입주 / {center.capacity}실 보유
+                                  {center.occupancy} occupied / {center.capacity} total
                                 </span>
                               </div>
                               <div className="mt-2 w-full bg-gray-200 h-2">
@@ -1455,34 +1460,34 @@ const JBSquareF2: React.FC = () => {
           <div className="max-w-7xl mx-auto px-16">
             <SectionHeader 
               leadText="INNOVATION OUTPUT"
-              title="JB 기술·특허" 
-              subtitle="전북 바이오 클러스터의 기술 혁신 성과와 지식재산권 현황을 소개합니다. 우수한 연구 성과가 실제 사업화로 연결되는 선순환 구조를 통해 지속가능한 혁신 생태계를 구축하고 있습니다."
+              title="JB Technology & Patents"
+              subtitle="Introducing the technological innovation achievements and intellectual property status of the Jeonbuk Bio Cluster. We are building a sustainable innovation ecosystem through a virtuous cycle where excellent research results lead to actual commercialization."
               fadeIn
             />
             
             <div className="grid grid-cols-3 gap-12 mb-16">
               <div className="bg-white border border-gray-200 p-8 text-center">
                 <div className="text-4xl font-bold text-blue-900 mb-3">124</div>
-                <div className="text-lg text-gray-700 font-medium mb-2">등록 특허</div>
+                <div className="text-lg text-gray-700 font-medium mb-2">Registered Patents</div>
                 <div className="text-sm text-green-600 font-medium">↗ +18%</div>
-                <div className="text-xs text-gray-500 mt-2">전년 대비</div>
+                <div className="text-xs text-gray-500 mt-2">vs. Previous Year</div>
               </div>
               <div className="bg-white border border-gray-200 p-8 text-center">
                 <div className="text-4xl font-bold text-blue-900 mb-3">18</div>
-                <div className="text-lg text-gray-700 font-medium mb-2">기술 이전</div>
+                <div className="text-lg text-gray-700 font-medium mb-2">Technology Transfers</div>
                 <div className="text-sm text-green-600 font-medium">↗ +45%</div>
-                <div className="text-xs text-gray-500 mt-2">전년 대비</div>
+                <div className="text-xs text-gray-500 mt-2">vs. Previous Year</div>
               </div>
               <div className="bg-white border border-gray-200 p-8 text-center">
                 <div className="text-4xl font-bold text-blue-900 mb-3">7</div>
-                <div className="text-lg text-gray-700 font-medium mb-2">R&D 성과</div>
-                <div className="text-xs text-gray-500 mt-2">정부과제 완료</div>
+                <div className="text-lg text-gray-700 font-medium mb-2">R&D Achievements</div>
+                <div className="text-xs text-gray-500 mt-2">Government Projects Completed</div>
               </div>
             </div>
             
             <div className="grid grid-cols-2 gap-16">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">주목할 만한 특허</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Noteworthy Patents</h3>
                 <div className="space-y-8">
                   {PATENTS.map((patent) => (
                     <Card key={patent.id} className="p-6" hover>
@@ -1495,23 +1500,23 @@ const JBSquareF2: React.FC = () => {
                             {patent.description}
                           </p>
                           <div className="space-y-2 text-sm text-gray-600">
-                            <p>출원인: <span className="font-medium">{patent.applicant}</span></p>
-                            <p>기술분야: <span className="font-medium">{patent.field}</span></p>
-                            <p>등록년도: <span className="font-medium">{patent.year}</span></p>
+                            <p>Applicant: <span className="font-medium">{patent.applicant}</span></p>
+                            <p>Field: <span className="font-medium">{patent.field}</span></p>
+                            <p>Year: <span className="font-medium">{patent.year}</span></p>
                           </div>
                           <div className="flex items-center gap-4 mt-4">
                             <Badge 
-                              variant={patent.status === '등록' ? 'success' : 'warning'}
+                              variant={patent.status === 'Registered' ? 'success' : 'warning'}
                               size="sm"
                             >
                               {patent.status}
                             </Badge>
-                            <span className="text-xs text-gray-500">인용 {patent.citations}회</span>
+                            <span className="text-xs text-gray-500">Cited {patent.citations} times</span>
                           </div>
                         </div>
                       </div>
                       <Button size="sm" variant="outline" className="w-full">
-                        특허 상세정보 보기
+                        View Patent Details
                       </Button>
                     </Card>
                   ))}
@@ -1519,20 +1524,20 @@ const JBSquareF2: React.FC = () => {
               </div>
               
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">기술 분야별 현황</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Status by Technology Field</h3>
                 <Card className="p-8 mb-8">
                   <div className="space-y-6">
                     {[
-                      { field: '바이오의약품', count: 45, percentage: 36, change: '+12%' },
-                      { field: '의료기기', count: 32, percentage: 26, change: '+8%' },
-                      { field: '진단기술', count: 28, percentage: 23, change: '+15%' },
-                      { field: '바이오소재', count: 19, percentage: 15, change: '+22%' }
+                      { field: 'Biopharmaceuticals', count: 45, percentage: 36, change: '+12%' },
+                      { field: 'Medical Devices', count: 32, percentage: 26, change: '+8%' },
+                      { field: 'Diagnostic Technology', count: 28, percentage: 23, change: '+15%' },
+                      { field: 'Biomaterials', count: 19, percentage: 15, change: '+22%' }
                     ].map((item, index) => (
                       <div key={index}>
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-gray-700 font-medium">{item.field}</span>
                           <div className="flex items-center gap-2">
-                            <span className="font-bold text-blue-900">{item.count}건</span>
+                            <span className="font-bold text-blue-900">{item.count} patents</span>
                             <span className="text-xs text-green-600">{item.change}</span>
                           </div>
                         </div>
@@ -1549,17 +1554,17 @@ const JBSquareF2: React.FC = () => {
                 
                 <div className="bg-green-50 border border-green-200 p-6">
                   <h4 className="text-lg font-bold text-green-800 mb-3">
-                    💡 최근 성과 하이라이트
+                    💡 Recent Achievement Highlights
                   </h4>
                   <div className="space-y-3 text-sm text-green-700">
                     <p>
-                      • 2024년 새로 등록된 특허 중 <strong>70%가 실제 사업화 단계</strong>에 진입
+                      • <strong>70% of new patents registered in 2024</strong> have entered the actual commercialization stage.
                     </p>
                     <p>
-                      • 평균 기술이전 수익이 <strong>전년 대비 45% 증가</strong>
+                      • Average technology transfer revenue has <strong>increased by 45%</strong> compared to the previous year.
                     </p>
                     <p>
-                      • 국제 특허 출원이 <strong>전년 대비 60% 증가</strong>하여 글로벌 경쟁력 강화
+                      • International patent applications have <strong>increased by 60%</strong> compared to the previous year, strengthening global competitiveness.
                     </p>
                   </div>
                 </div>
@@ -1568,7 +1573,7 @@ const JBSquareF2: React.FC = () => {
             
             <div className="text-center mt-16">
               <Button size="lg" className="px-12 py-4 text-lg">
-                특허 데이터베이스 전체 보기
+                View Full Patent Database
               </Button>
             </div>
           </div>
@@ -1579,73 +1584,73 @@ const JBSquareF2: React.FC = () => {
           <div className="max-w-4xl mx-auto px-16 text-center">
             <SectionHeader 
               leadText="COMPREHENSIVE SEARCH"
-              title="통합 검색" 
-              subtitle="JB SQUARE의 모든 정보를 한 번에 찾아보세요. 지원사업, 기업정보, 기술·특허, 뉴스 등 필요한 정보를 빠르게 검색할 수 있습니다."
+              title="Integrated Search"
+              subtitle="Find all the information of JB SQUARE at once. You can quickly search for necessary information such as support programs, company information, technology/patents, and news."
             />
             
             <div className="relative mb-12">
               <input
                 type="search"
-                placeholder="지원사업, 기업명, 기술 분야 등을 검색하세요"
+                placeholder="Search for programs, company names, technology fields, etc."
                 className="w-full px-6 py-4 text-lg border-2 border-gray-300 focus:border-blue-900 focus:outline-none focus:ring-0"
-                aria-label="통합 검색"
+                aria-label="Integrated search"
               />
               <button
                 className="absolute right-0 top-0 h-full px-8 bg-blue-900 text-white hover:bg-blue-800 focus:outline-none focus:ring-3 focus:ring-blue-200 focus:ring-offset-2"
-                aria-label="검색 실행"
+                aria-label="Execute search"
               >
-                검색
+                Search
               </button>
             </div>
             
             <div className="flex justify-center gap-4 flex-wrap mb-8">
-              <Button variant="outline" size="sm">전체</Button>
-              <Button variant="outline" size="sm">지원사업</Button>
-              <Button variant="outline" size="sm">기업정보</Button>
-              <Button variant="outline" size="sm">기술·특허</Button>
-              <Button variant="outline" size="sm">뉴스·행사</Button>
+              <Button variant="outline" size="sm">All</Button>
+              <Button variant="outline" size="sm">Programs</Button>
+              <Button variant="outline" size="sm">Companies</Button>
+              <Button variant="outline" size="sm">Patents</Button>
+              <Button variant="outline" size="sm">News & Events</Button>
             </div>
             
             <div className="grid grid-cols-3 gap-6">
               <div>
-                <label htmlFor="region-filter" className="block text-gray-700 mb-2 font-medium">지역</label>
+                <label htmlFor="region-filter" className="block text-gray-700 mb-2 font-medium">Region</label>
                 <select 
                   id="region-filter"
                   className="w-full px-4 py-3 border border-gray-300 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
-                  <option>전체</option>
-                  <option>전주시</option>
-                  <option>익산시</option>
-                  <option>군산시</option>
-                  <option>정읍시</option>
-                  <option>김제시</option>
-                  <option>완주군</option>
+                  <option>All</option>
+                  <option>Jeonju</option>
+                  <option>Iksan</option>
+                  <option>Gunsan</option>
+                  <option>Jeongeup</option>
+                  <option>Gimje</option>
+                  <option>Wanju</option>
                 </select>
               </div>
               <div>
-                <label htmlFor="sector-filter" className="block text-gray-700 mb-2 font-medium">분야</label>
+                <label htmlFor="sector-filter" className="block text-gray-700 mb-2 font-medium">Sector</label>
                 <select 
                   id="sector-filter"
                   className="w-full px-4 py-3 border border-gray-300 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
-                  <option>전체</option>
-                  <option>바이오의약품</option>
-                  <option>의료기기</option>
-                  <option>진단시약</option>
-                  <option>바이오소재</option>
-                  <option>세포치료제</option>
+                  <option>All</option>
+                  <option>Biopharmaceuticals</option>
+                  <option>Medical Devices</option>
+                  <option>Diagnostic Reagents</option>
+                  <option>Biomaterials</option>
+                  <option>Cell Therapy</option>
                 </select>
               </div>
               <div>
-                <label htmlFor="stage-filter" className="block text-gray-700 mb-2 font-medium">단계</label>
+                <label htmlFor="stage-filter" className="block text-gray-700 mb-2 font-medium">Stage</label>
                 <select 
                   id="stage-filter"
                   className="w-full px-4 py-3 border border-gray-300 focus:border-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-200"
                 >
-                  <option>전체</option>
-                  <option>초기단계</option>
-                  <option>성장단계</option>
-                  <option>스케일업</option>
+                  <option>All</option>
+                  <option>Early Stage</option>
+                  <option>Growth Stage</option>
+                  <option>Scale-up</option>
                 </select>
               </div>
             </div>
@@ -1656,32 +1661,32 @@ const JBSquareF2: React.FC = () => {
         <section className="py-32 bg-gray-900 text-white" aria-labelledby="newsletter-title">
           <div className="max-w-4xl mx-auto px-16 text-center">
             <h2 id="newsletter-title" className="text-5xl font-bold mb-6">
-              최신 소식을 받아보세요
+              Get the Latest News
             </h2>
             <p className="text-xl text-gray-300 mb-12 leading-relaxed">
-              전북 바이오 생태계의 주요 소식과 지원사업 공고를 이메일로 받아보실 수 있습니다. 
-              비즈니스 기회를 놓치지 마세요.
+              Receive major news and support program announcements from the Jeonbuk bio-ecosystem by email.
+              Don't miss out on business opportunities.
             </p>
             
-            <div className="flex gap-4 max-w-lg mx-auto">
+            <form onSubmit={handleNewsletterSubmit} className="flex gap-4 max-w-lg mx-auto">
               <input
                 type="email"
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="이메일 주소를 입력하세요"
+                placeholder="Enter your email address"
                 className="flex-1 px-6 py-4 text-lg text-gray-900 focus:outline-none focus:ring-3 focus:ring-blue-200 focus:ring-offset-2"
-                aria-label="이메일 주소"
+                aria-label="Email address"
                 aria-describedby={newsletterStatus !== 'idle' ? 'newsletter-status' : undefined}
               />
               <Button 
-                onClick={handleNewsletterSubmit}
+                type="submit"
                 variant="secondary" 
                 size="lg"
                 className="px-8 py-4 text-lg"
               >
-                구독하기
+                Subscribe
               </Button>
-            </div>
+            </form>
             
             {newsletterStatus !== 'idle' && (
               <div 
@@ -1695,14 +1700,14 @@ const JBSquareF2: React.FC = () => {
                 aria-live="polite"
               >
                 {newsletterStatus === 'success' 
-                  ? '성공적으로 구독되었습니다!' 
-                  : '올바른 이메일 주소를 입력해주세요.'
+                  ? 'Successfully subscribed!'
+                  : 'Please enter a valid email address.'
                 }
               </div>
             )}
             
             <p className="text-sm text-gray-400 mt-6">
-              개인정보 처리방침에 따라 안전하게 관리됩니다. 언제든지 구독을 취소할 수 있습니다.
+              Your information is managed securely according to our privacy policy. You can unsubscribe at any time.
             </p>
           </div>
         </section>
