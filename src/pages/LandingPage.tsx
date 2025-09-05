@@ -44,24 +44,30 @@ const Card: React.FC<CardProps> = ({ title, shortDesc, longDesc, link }) => {
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="max-w-4xl w-full">
+      <div className="max-w-6xl w-full">
         <header className="text-center mb-12">
           <h1 className="text-5xl font-extrabold text-gray-900 mb-2">JB SQUARE Demo</h1>
-          <p className="text-lg text-gray-500">Check out the two-page concepts.</p>
+          <p className="text-lg text-gray-500">Check out the page concepts.</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card
-            title="Innovative Concept"
+            title="Innovative Concept (Korean)"
             shortDesc="A futuristic design concept using dynamic UI and brilliant animations."
             longDesc="Vibrant, animated, and futuristic design concept focusing on a 'wow' factor. Uses modern UI elements and smooth transitions to create a dynamic user experience."
             link="/jb-square-root-redesign"
           />
           <Card
-            title="Editorial Concept"
+            title="Editorial Concept (Korean)"
             shortDesc="A stable and functional design concept focused on information delivery."
             longDesc="A more traditional, content-rich, and functional design. This concept is structured like a corporate or informational platform, prioritizing clarity and data presentation."
             link="/jb-square-f2-desktop"
+          />
+          <Card
+            title="Australian Concept"
+            shortDesc="A sophisticated, global-standard design sample for an Australian client."
+            longDesc="This is a one-page website redesign sample for an Australian client, adhering to global standards. It features a modern, dark-themed design for a biotech innovation hub."
+            link="/jb-square-aus"
           />
         </div>
       </div>
