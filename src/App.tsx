@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import JBSquareKRPortal from './pages/JBSquareKRPortal';
+import JBMassBioPortal from './pages/JBMassBioPortal';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/jb-square-kr-portal" element={<JBSquareKRPortal />} />
+        <Route path="/jb-mass-bio-portal" element={<JBMassBioPortal />} />
       </Routes>
     </Router>
   );
