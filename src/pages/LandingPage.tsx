@@ -11,12 +11,12 @@ const LandingPage = () => {
       </div>
 
       <div className="w-full max-w-md">
-        <Link to="/jb-mass-bio-portal">
+        <Link to="/jb-korean-portal">
           <div className="bg-white shadow-lg rounded-lg p-8 transform hover:scale-105 transition-transform duration-300 group">
             <div className="flex justify-between items-center">
               <div>
                 <h2 className="text-2xl font-bold text-gray-800">전북 바이오 포털</h2>
-                <p className="text-gray-600 mt-1">MassBio.org 스타일 기반 최종본</p>
+                <p className="text-gray-600 mt-1">최종본 바로가기</p>
               </div>
               <ArrowRight className="w-8 h-8 text-gray-400 group-hover:text-blue-600 transition-colors"/>
             </div>

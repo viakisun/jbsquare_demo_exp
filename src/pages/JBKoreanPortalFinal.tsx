@@ -138,9 +138,9 @@ const programsData = {
 const incubationData = {
     title: "창업 보육센터",
     centers: [
-        { name: "전북바이오벤처센터", location: "전주시 덕진구", target: "바이오의약품 스타트업", vacancy: 3, total: 32 },
-        { name: "익산바이오사이언스센터", location: "익산시 신동", target: "진단시약, 의료기기", vacancy: 1, total: 20 },
-        { name: "정읍바이오소재센터", location: "정읍시 산내면", target: "바이오소재, 화장품", vacancy: 5, total: 24 },
+        { name: "전북바이오벤처센터", location: "전주시 덕진구", target: "바이오의약품 스타트업", vacancy: 3, total: 32, img: "https://images.unsplash.com/photo-1579165465529-423969a7b4F2?q=80&w=2574&auto=format&fit=crop" },
+        { name: "익산바이오사이언스센터", location: "익산시 신동", target: "진단시약, 의료기기", vacancy: 1, total: 20, img: "https://images.unsplash.com/photo-1578496459858-4659a09271ce?q=80&w=2574&auto=format&fit=crop" },
+        { name: "정읍바이오소재센터", location: "정읍시 산내면", target: "바이오소재, 화장품", vacancy: 5, total: 24, img: "https://images.unsplash.com/photo-1628862624548-556475a3bf7e?q=80&w=2574&auto=format&fit=crop" },
     ]
 };
 
@@ -163,16 +163,32 @@ const communityData = {
     ]
 };
 
-
 // --- PAGE-SPECIFIC COMPONENTS ---
 
 const Header: FC = () => {
+    const [openMenu, setOpenMenu] = useState<string | null>(null);
+
     return (
-        <header className="sticky top-0 z-50 bg-white shadow-md">
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md">
             <Container className="flex justify-between items-center h-20">
                 <a href="#" className="font-extrabold text-2xl text-gray-900">JB SQUARE</a>
-                <nav className="hidden lg:flex items-center space-x-8">
-                    {navigationData.map(item => <a key={item.name} href={item.href} className="text-base font-medium text-gray-600 hover:text-blue-800">{item.name}</a>)}
+                <nav className="hidden lg:flex items-center space-x-1">
+                    {navigationData.map(item => (
+                        <div key={item.name} className="relative" onMouseEnter={() => item.children && setOpenMenu(item.name)} onMouseLeave={() => setOpenMenu(null)}>
+                            <a href={item.href} className="px-4 py-2 text-base font-medium text-gray-600 hover:text-blue-800 rounded-md flex items-center">
+                                {item.name} {item.children && <ChevronDown size={16} className="ml-1"/>}
+                            </a>
+                            {item.children && openMenu === item.name && (
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+                                    <div className="py-1">
+                                        {item.children.map(child => (
+                                            <a key={child.name} href={child.href} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{child.name}</a>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))}
                 </nav>
                 <a href="#" className="hidden lg:inline-block px-5 py-2 text-sm font-bold text-gray-900 bg-yellow-400 rounded-md hover:bg-yellow-500">포털 문의</a>
             </Container>
@@ -215,15 +231,14 @@ const Footer: FC = () => (
     </footer>
 );
 
-// --- MAIN PORTAL PAGE ---
+// --- MAIN PORTAL PAGE (with Detailed Sections) ---
 
-const JBMassBioPortal: FC = () => {
+const JBKoreanPortalFinal: FC = () => {
     return (
         <PageWrapper>
             <Header />
             <main>
                 <Hero />
-
                 <Section id="stats">
                     <Container>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -236,8 +251,7 @@ const JBMassBioPortal: FC = () => {
                         </div>
                     </Container>
                 </Section>
-
-                <Section id="programs" className="bg-gray-50">
+                 <Section id="programs" className="bg-gray-50">
                     <Container>
                         <SectionTitle subtitle="SUPPORT">지원사업 공고</SectionTitle>
                         <Table
@@ -252,25 +266,26 @@ const JBMassBioPortal: FC = () => {
                         />
                     </Container>
                 </Section>
-
                 <Section id="incubation">
                     <Container>
                         <SectionTitle subtitle="INCUBATION">창업 보육센터</SectionTitle>
                         <div className="grid md:grid-cols-3 gap-8">
-                            {incubationData.centers.map((center, i) => (
-                                <AnimatedDiv key={center.name} delay={i * 100} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                                    <h3 className="font-bold text-xl text-gray-900">{center.name}</h3>
-                                    <p className="text-sm text-gray-500 mt-1">{center.location}</p>
-                                    <p className="mt-4 text-sm">{center.target}</p>
-                                    <div className="mt-6 pt-4 border-t border-gray-100">
-                                        <p className="font-semibold text-blue-600">공실 현황: {center.vacancy} / {center.total}</p>
+                           {incubationData.centers.map((center, i) => (
+                                <AnimatedDiv key={center.name} delay={i * 150}>
+                                    <div className="bg-white rounded-xl shadow-lg overflow-hidden group">
+                                        <img src={center.img} alt={center.name} className="h-48 w-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                        <div className="p-6">
+                                            <h3 className="font-bold text-xl text-gray-900">{center.name}</h3>
+                                            <p className="text-sm text-gray-500 mt-1">{center.location}</p>
+                                            <p className="mt-4 text-sm font-semibold text-blue-800">주요 대상: {center.target}</p>
+                                            <p className="mt-2 text-sm font-semibold text-yellow-600">공실 현황: {center.vacancy} / {center.total}</p>
+                                        </div>
                                     </div>
                                 </AnimatedDiv>
-                            ))}
+                           ))}
                         </div>
                     </Container>
                 </Section>
-
                 <Section id="patents" className="bg-gray-50">
                     <Container>
                         <SectionTitle subtitle="R&D">기술 및 특허</SectionTitle>
@@ -280,7 +295,6 @@ const JBMassBioPortal: FC = () => {
                         />
                     </Container>
                 </Section>
-
                 <Section id="community">
                     <Container>
                         <SectionTitle subtitle="NETWORK">커뮤니티</SectionTitle>
@@ -297,7 +311,6 @@ const JBMassBioPortal: FC = () => {
                         </div>
                     </Container>
                 </Section>
-
                 <Section id="newsletter" className="bg-yellow-400">
                     <Container className="text-center py-12">
                          <h2 className="text-3xl font-bold text-gray-900">뉴스레터 구독</h2>
@@ -314,4 +327,4 @@ const JBMassBioPortal: FC = () => {
     );
 };
 
-export default JBMassBioPortal;
+export default JBKoreanPortalFinal;
