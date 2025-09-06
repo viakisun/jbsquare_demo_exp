@@ -1,5 +1,5 @@
 import React, { useState, FC, ReactNode, useEffect, useRef } from 'react';
-import { ChevronDown, ArrowRight, Search, MapPin, Phone, Mail, Building, Briefcase, FileText, FlaskConical, University, Beaker } from 'lucide-react';
+import { ChevronDown, ArrowRight, Search, MapPin, Phone, Mail, Building, Briefcase, FileText, FlaskConical, University, Beaker, BookOpen } from 'lucide-react';
 
 // --- UTILITIES & HOOKS ---
 
@@ -52,15 +52,15 @@ const CountUp: FC<{ end: number; duration?: number }> = ({ end, duration = 2000 
         }
     }, [isInView, end, duration]);
 
-    return <span ref={ref}>{count.toLocaleString()}+</span>;
+    return <span ref={ref}>{count.toLocaleString()}</span>;
 };
 
-const AnimatedCard: FC<{children: ReactNode, delay?: number}> = ({ children, delay = 0 }) => {
+const AnimatedDiv: FC<{children: ReactNode, delay?: number, className?: string}> = ({ children, delay = 0, className = '' }) => {
     const [ref, isInView] = useInView({ threshold: 0.1 });
     return (
         <div
             ref={ref}
-            className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            className={`transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} ${className}`}
             style={{ transitionDelay: `${delay}ms` }}
         >
             {children}
@@ -101,14 +101,8 @@ const Table: FC<{headers: string[]; data: (string|ReactNode)[][]}> = ({ headers,
 );
 
 
-// --- DATA STRUCTURES (EXPANDED & KOREAN) ---
-
-interface NavItem {
-    name: string;
-    href: string;
-    children?: { name: string; href: string; }[];
-}
-
+// --- DATA STRUCTURES (COMPREHENSIVE & KOREAN) ---
+interface NavItem { name: string; href: string; children?: { name: string; href: string; }[]; }
 const navigationData: NavItem[] = [
     { name: "JB-Square", href: "#jb-square", children: [{ name: "바이오밸리 소개", href: "#" }, { name: "입주기업 현황", href: "#" }] },
     { name: "지원사업", href: "#programs", children: [{ name: "정부/지자체 공고", href: "#" }] },
@@ -132,11 +126,31 @@ const jbSquareData = {
 const programsData = {
     title: "JB 지원사업 공고",
     programs: [
-        { title: "2025년도 바이오 스타트업 육성 프로그램", status: "접수중", deadline: "2025.09.30" },
-        { title: "차세대 의료기기 상용화 지원사업", status: "마감임박", deadline: "2025.08.31" },
-        { title: "천연물 소재 기술개발 지원", status: "접수중", deadline: "2025.09.15" },
-        { title: "AI 신약개발 플랫폼 구축사업", status: "신규", deadline: "2025.10.10" },
-        { title: "글로벌 바이오 인력양성", status: "신규", deadline: "2025.10.20" },
+        { title: "2025년도 바이오 스타트업 육성 프로그램", status: "접수중", deadline: "2025.09.30", field: "창업지원", type: "R&D" },
+        { title: "차세대 의료기기 상용화 지원사업", status: "마감임박", deadline: "2025.08.31", field: "사업화", type: "비R&D" },
+        { title: "천연물 소재 기술개발 지원", status: "접수중", deadline: "2025.09.15", field: "연구개발", type: "R&D" },
+        { title: "AI 신약개발 플랫폼 구축사업", status: "신규", deadline: "2025.10.10", field: "인프라", type: "R&D" },
+        { title: "글로벌 바이오 인력양성", status: "신규", deadline: "2025.10.20", field: "인재양성", type: "비R&D" },
+        { title: "바이오헬스 글로벌 진출 지원", status: "접수중", deadline: "2025.09.30", field: "해외진출", type: "비R&D" },
+    ]
+};
+
+const incubationData = {
+    title: "창업 보육센터",
+    centers: [
+        { name: "전북바이오벤처센터", location: "전주시 덕진구", target: "바이오의약품 스타트업", vacancy: 3, total: 32 },
+        { name: "익산바이오사이언스센터", location: "익산시 신동", target: "진단시약, 의료기기", vacancy: 1, total: 20 },
+        { name: "정읍바이오소재센터", location: "정읍시 산내면", target: "바이오소재, 화장품", vacancy: 5, total: 24 },
+    ]
+};
+
+const patentData = {
+    title: "기술 및 특허",
+    patents: [
+        { title: "줄기세포 배양 최적화 기술", applicant: "전북대학교", field: "바이오의약품", year: 2024 },
+        { title: "진단 키트 개발 신규 방법론", applicant: "바이오셀", field: "진단시약", year: 2024 },
+        { title: "친환경 바이오소재 합성 공정", applicant: "원광대학교", field: "바이오소재", year: 2023 },
+        { title: "AI 기반 영상 진단 보조 시스템", applicant: "메디컬바이오", field: "의료기기", year: 2024 },
     ]
 };
 
@@ -148,16 +162,6 @@ const communityData = {
         { name: "전북경제포럼", description: "지역 경제 발전을 위한 산학연관 전문가 포럼", schedule: "연 2회", highlight: false },
     ]
 };
-
-const supportOrgsData = {
-    title: "대학 · 연구소",
-    orgs: [
-        { name: "전북대학교", type: "대학", field: "의·생명과학, 농생명", website: "#" },
-        { name: "원광대학교", type: "대학", field: "한의학, 바이오 융합", website: "#" },
-        { name: "안전성평가연구소", type: "연구소", field: "GLP 독성시험, 효능평가", website: "#" },
-        { name: "한국생명공학연구원", type: "연구소", field: "유전체, 마이크로바이옴", website: "#" },
-    ]
-}
 
 
 // --- PAGE-SPECIFIC COMPONENTS ---
@@ -190,8 +194,6 @@ const Hero: FC = () => (
     </div>
 );
 
-// --- MAIN PORTAL PAGE ---
-
 const Footer: FC = () => (
     <footer className="bg-gray-800 text-white" role="contentinfo">
         <Container className="py-16">
@@ -212,6 +214,9 @@ const Footer: FC = () => (
         </Container>
     </footer>
 );
+
+
+// --- MAIN PORTAL PAGE ---
 
 const JBMassBioPortal: FC = () => {
     return (
@@ -236,36 +241,60 @@ const JBMassBioPortal: FC = () => {
                 <Section id="programs" className="bg-gray-50">
                     <Container>
                         <SectionTitle subtitle="SUPPORT">지원사업 공고</SectionTitle>
+                        <Table
+                            headers={["사업명", "분야", "구분", "접수기한", "상태"]}
+                            data={programsData.programs.map(p => [
+                                p.title,
+                                p.field,
+                                p.type,
+                                p.deadline,
+                                <span key={p.status} className={`px-2 py-1 text-xs font-semibold rounded-full ${p.status === '마감임박' ? 'bg-yellow-200 text-yellow-800' : 'bg-green-200 text-green-800'}`}>{p.status}</span>
+                            ])}
+                        />
+                    </Container>
+                </Section>
+
+                <Section id="incubation">
+                    <Container>
+                        <SectionTitle subtitle="INCUBATION">창업 보육센터</SectionTitle>
                         <div className="grid md:grid-cols-3 gap-8">
-                            {programsData.programs.map((p, i) => (
-                                <AnimatedCard key={p.title} delay={i * 100}>
-                                    <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 h-full">
-                                        {p.status === "마감임박" && <div className="absolute top-0 right-6 -mt-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">마감 임박</div>}
-                                        <h3 className="font-bold text-lg text-gray-900">{p.title}</h3>
-                                        <p className="text-sm text-gray-500 mt-2">접수 기한: {p.deadline}</p>
-                                        <a href="#" className="text-blue-600 font-semibold text-sm mt-4 inline-block">자세히 보기 <ArrowRight className="inline h-4 w-4"/></a>
+                            {incubationData.centers.map((center, i) => (
+                                <AnimatedDiv key={center.name} delay={i * 100} className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                                    <h3 className="font-bold text-xl text-gray-900">{center.name}</h3>
+                                    <p className="text-sm text-gray-500 mt-1">{center.location}</p>
+                                    <p className="mt-4 text-sm">{center.target}</p>
+                                    <div className="mt-6 pt-4 border-t border-gray-100">
+                                        <p className="font-semibold text-blue-600">공실 현황: {center.vacancy} / {center.total}</p>
                                     </div>
-                                </AnimatedCard>
+                                </AnimatedDiv>
                             ))}
                         </div>
                     </Container>
                 </Section>
 
-                <Section id="support">
+                <Section id="patents" className="bg-gray-50">
                     <Container>
-                        <SectionTitle subtitle="NETWORK">주요 대학 및 연구소</SectionTitle>
-                        <div className="grid md:grid-cols-4 gap-8">
-                           {supportOrgsData.orgs.map((org, i) => (
-                                <AnimatedCard key={org.name} delay={i * 100}>
-                                    <div className="bg-white p-6 rounded-lg shadow-md text-center h-full">
-                                        <div className="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 text-blue-600 mx-auto mb-4">
-                                            {org.type === '대학' ? <University /> : <Beaker />}
-                                        </div>
-                                        <h3 className="font-bold text-lg">{org.name}</h3>
-                                        <p className="text-sm text-yellow-600 font-semibold">{org.field}</p>
+                        <SectionTitle subtitle="R&D">기술 및 특허</SectionTitle>
+                        <Table
+                            headers={["특허명", "출원인", "기술분야", "등록년도"]}
+                            data={patentData.patents.map(p => [p.title, p.applicant, p.field, p.year.toString()])}
+                        />
+                    </Container>
+                </Section>
+
+                <Section id="community">
+                    <Container>
+                        <SectionTitle subtitle="NETWORK">커뮤니티</SectionTitle>
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {communityData.forums.map((f, i) => (
+                                <AnimatedDiv key={f.name} delay={i * 100}>
+                                    <div className={`rounded-lg p-6 h-full ${f.highlight ? 'bg-yellow-100 border-2 border-yellow-400' : 'bg-white shadow-md'}`}>
+                                        <h3 className="font-bold text-lg text-gray-900">{f.name}</h3>
+                                        <p className="text-sm text-gray-600 mt-2">{f.description}</p>
+                                        <p className="text-xs text-gray-500 mt-4"><strong>운영:</strong> {f.schedule}</p>
                                     </div>
-                                </AnimatedCard>
-                           ))}
+                                </AnimatedDiv>
+                            ))}
                         </div>
                     </Container>
                 </Section>
@@ -278,23 +307,6 @@ const JBMassBioPortal: FC = () => {
                             <input type="email" placeholder="이메일 주소를 입력하세요" className="px-5 py-3 w-full max-w-sm border-gray-300 rounded-l-md focus:ring-blue-500 focus:border-blue-500"/>
                             <button type="submit" className="px-5 py-3 bg-gray-900 text-white font-bold rounded-r-md hover:bg-gray-800">구독하기</button>
                         </form>
-                    </Container>
-                </Section>
-
-                <Section id="community">
-                    <Container>
-                        <SectionTitle subtitle="NETWORK">커뮤니티</SectionTitle>
-                        <div className="grid md:grid-cols-3 gap-8">
-                            {communityData.forums.map((f, i) => (
-                                <AnimatedCard key={f.name} delay={i * 100}>
-                                    <div className={`rounded-lg p-6 h-full ${f.highlight ? 'bg-yellow-100 border-2 border-yellow-400' : 'bg-white shadow-md'}`}>
-                                        <h3 className="font-bold text-lg text-gray-900">{f.name}</h3>
-                                        <p className="text-sm text-gray-600 mt-2">{f.description}</p>
-                                        <p className="text-xs text-gray-500 mt-4"><strong>운영:</strong> {f.schedule}</p>
-                                    </div>
-                                </AnimatedCard>
-                            ))}
-                        </div>
                     </Container>
                 </Section>
             </main>
