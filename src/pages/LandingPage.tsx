@@ -70,10 +70,10 @@ const LandingPage = () => {
             link="/jb-square-aus"
           />
           <Card
-            title="Australian Concept (Editorial)"
-            shortDesc="A world-class UX/UI redesign with a focus on clarity and credibility."
-            longDesc="This is a complete, expert-led redesign of the editorial concept page for an Australian audience. It features a light theme, strong typography, and a professional, clean layout."
-            link="/jb-square-au-editorial"
+            title="Australian Portal"
+            shortDesc="A comprehensive portal with detailed information, built with a world-class UX/UI."
+            longDesc="This is a complete, content-rich portal for the Australian bio-cluster, featuring detailed information on programs, companies, investment, and more, all presented in a clean, professional, and credible design."
+            link="/jb-square-portal"
           />
         </div>
       </div>
