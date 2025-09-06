@@ -50,19 +50,7 @@ const LandingPage = () => {
           <p className="text-lg text-gray-500">Check out the page concepts.</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <Card
-            title="Innovative Concept (Korean)"
-            shortDesc="A futuristic design concept using dynamic UI and brilliant animations."
-            longDesc="Vibrant, animated, and futuristic design concept focusing on a 'wow' factor. Uses modern UI elements and smooth transitions to create a dynamic user experience."
-            link="/jb-square-root-redesign"
-          />
-          <Card
-            title="Editorial Concept (Korean)"
-            shortDesc="A stable and functional design concept focused on information delivery."
-            longDesc="A more traditional, content-rich, and functional design. This concept is structured like a corporate or informational platform, prioritizing clarity and data presentation."
-            link="/jb-square-f2-desktop"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card
             title="Australian Concept (Futuristic)"
             shortDesc="A sophisticated, global-standard design sample for an Australian client."
@@ -70,10 +58,10 @@ const LandingPage = () => {
             link="/jb-square-aus"
           />
           <Card
-            title="Australian Portal"
-            shortDesc="A comprehensive portal with detailed information, built with a world-class UX/UI."
-            longDesc="This is a complete, content-rich portal for the Australian bio-cluster, featuring detailed information on programs, companies, investment, and more, all presented in a clean, professional, and credible design."
-            link="/jb-square-portal"
+            title="Korean Portal"
+            shortDesc="A comprehensive portal for the JB SQUARE bio-cluster, implemented in Korean."
+            longDesc="This is a complete, content-rich portal for the JB SQUARE bio-cluster, featuring detailed information on programs, companies, investment, and more, faithfully implemented from the sitemap in Korean."
+            link="/jb-square-kr-portal"
           />
         </div>
       </div>
